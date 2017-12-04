@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	connect, err := clickhouse.Open("tcp://127.0.0.1:9000?username=&debug=true")
+	connect, err := clickhouse.Open("native://127.0.0.1:9000?username=&debug=true")
 	if err != nil {
 		log.Fatal(err)
 	}

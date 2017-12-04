@@ -28,7 +28,7 @@ SSL/TLS parameters:
 
 example:
 ```
-tcp://host1:9000?username=user&password=qwerty&database=clicks&read_timeout=10&write_timeout=20&alt_hosts=host2:9000,host3:9000
+native://host1:9000?username=user&password=qwerty&database=clicks&read_timeout=10&write_timeout=20&alt_hosts=host2:9000,host3:9000
 ```
 
 ## Supported data types
@@ -67,7 +67,7 @@ import (
 )
 
 func main() {
-	connect, err := sql.Open("clickhouse", "tcp://127.0.0.1:9000?debug=true")
+	connect, err := sql.Open("clickhouse", "native://127.0.0.1:9000?debug=true")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -154,7 +154,7 @@ import (
 )
 
 func main() {
-	connect, err := sqlx.Open("clickhouse", "tcp://127.0.0.1:9000?debug=true")
+	connect, err := sqlx.Open("clickhouse", "native://127.0.0.1:9000?debug=true")
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -78,7 +78,7 @@ func Test_DirectInsert(t *testing.T) {
 			)
 		`
 	)
-	if connect, err := clickhouse.Open("tcp://127.0.0.1:9000?debug=true"); assert.NoError(t, err) {
+	if connect, err := clickhouse.Open("native://127.0.0.1:9000?debug=true"); assert.NoError(t, err) {
 		{
 			var (
 				tx, _   = connect.Begin()
@@ -197,7 +197,7 @@ func Test_DirectArrayT(t *testing.T) {
 		`
 	)
 
-	if connect, err := clickhouse.Open("tcp://127.0.0.1:9000?debug=true"); assert.NoError(t, err) {
+	if connect, err := clickhouse.Open("native://127.0.0.1:9000?debug=true"); assert.NoError(t, err) {
 		{
 			var (
 				tx, _   = connect.Begin()

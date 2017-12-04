@@ -87,7 +87,7 @@ func Test_Custom_Types(t *testing.T) {
 			FROM clickhouse_test_custom_types
 		`
 	)
-	if connect, err := sql.Open("clickhouse", "tcp://127.0.0.1:9000?debug=true"); assert.NoError(t, err) && assert.NoError(t, connect.Ping()) {
+	if connect, err := sql.Open("clickhouse", "native://127.0.0.1:9000?debug=true"); assert.NoError(t, err) && assert.NoError(t, connect.Ping()) {
 		if _, err := connect.Exec("DROP TABLE IF EXISTS clickhouse_test_custom_types"); assert.NoError(t, err) {
 			if _, err := connect.Exec(ddl); assert.NoError(t, err) {
 				if tx, err := connect.Begin(); assert.NoError(t, err) {
@@ -197,7 +197,7 @@ func Test_Scan_Value(t *testing.T) {
 	)
 
 	point := PointType{1, 2, 3}
-	if connect, err := sql.Open("clickhouse", "tcp://127.0.0.1:9000?debug=true"); assert.NoError(t, err) && assert.NoError(t, connect.Ping()) {
+	if connect, err := sql.Open("clickhouse", "native://127.0.0.1:9000?debug=true"); assert.NoError(t, err) && assert.NoError(t, connect.Ping()) {
 		if _, err := connect.Exec("DROP TABLE IF EXISTS clickhouse_test_scan_value"); assert.NoError(t, err) {
 			if _, err := connect.Exec(ddl); assert.NoError(t, err) {
 				if tx, err := connect.Begin(); assert.NoError(t, err) {

@@ -38,7 +38,7 @@ func Test_Issue38_uint64_support(t *testing.T) {
 			FROM clickhouse_test_uint64_support
 		`
 	)
-	if connect, err := sql.Open("clickhouse", "tcp://127.0.0.1:9000?debug=true"); assert.NoError(t, err) && assert.NoError(t, connect.Ping()) {
+	if connect, err := sql.Open("clickhouse", "native://127.0.0.1:9000?debug=true"); assert.NoError(t, err) && assert.NoError(t, connect.Ping()) {
 		if _, err := connect.Exec("DROP TABLE IF EXISTS clickhouse_test_uint64_support"); assert.NoError(t, err) {
 			if _, err := connect.Exec(ddl); assert.NoError(t, err) {
 				if tx, err := connect.Begin(); assert.NoError(t, err) {
@@ -97,7 +97,7 @@ func Test_Issue42_Plain_SQL_Support(t *testing.T) {
 		query = "SELECT `id`,`name`,`email` FROM `dbr_people` WHERE `email` = 'jonathan@uservoice.com'"
 	)
 
-	if connect, err := sql.Open("clickhouse", "tcp://127.0.0.1:9000?debug=true"); assert.NoError(t, err) && assert.NoError(t, connect.Ping()) {
+	if connect, err := sql.Open("clickhouse", "native://127.0.0.1:9000?debug=true"); assert.NoError(t, err) && assert.NoError(t, connect.Ping()) {
 		if _, err := connect.Exec("DROP TABLE IF EXISTS `dbr_people`"); assert.NoError(t, err) {
 			if _, err := connect.Exec(ddl); assert.NoError(t, err) {
 				if tx, err := connect.Begin(); assert.NoError(t, err) {
@@ -143,7 +143,7 @@ func Test_Issue42_Plain_SQL_Support(t *testing.T) {
 }
 
 func TestBytes(t *testing.T) {
-	connect, err := sql.Open("clickhouse", "tcp://127.0.0.1:9000?debug=true")
+	connect, err := sql.Open("clickhouse", "native://127.0.0.1:9000?debug=true")
 	require.NoError(t, err)
 	require.NoError(t, connect.Ping())
 	defer connect.Close()
@@ -177,7 +177,7 @@ func TestNullableEnumWithoutLeadZero(t *testing.T) {
 		{"A", "B"},
 		{nil, "B"},
 	}
-	if connect, err := sql.Open("clickhouse", "tcp://127.0.0.1:9000?debug=true"); assert.NoError(t, err) && assert.NoError(t, connect.Ping()) {
+	if connect, err := sql.Open("clickhouse", "native://127.0.0.1:9000?debug=true"); assert.NoError(t, err) && assert.NoError(t, connect.Ping()) {
 		if _, err := connect.Exec("DROP TABLE IF EXISTS test_nullable_enum_without_lead_zero"); assert.NoError(t, err) {
 			if _, err := connect.Exec(ddl); assert.NoError(t, err) {
 				if tx, err := connect.Begin(); assert.NoError(t, err) {
